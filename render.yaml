@@ -4,9 +4,10 @@ services:
     runtime: python
     buildCommand: >-
       pip install -r backend/requirements.txt &&
-      curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&
-      apt-get install -y nodejs &&
-      cd frontend && npm install && npm run build
+      pip install nodeenv &&
+      nodeenv --node=20.11.0 --prebuilt /opt/node &&
+      /opt/node/bin/npm --prefix frontend install &&
+      /opt/node/bin/npm --prefix frontend run build
     startCommand: "uvicorn backend.main:app --host 0.0.0.0 --port $PORT"
     envVars:
       - key: PYTHON_VERSION

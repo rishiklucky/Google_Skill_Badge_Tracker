@@ -4,16 +4,14 @@ set -e
 echo "=== Installing Python dependencies ==="
 pip install -r backend/requirements.txt
 
-echo "=== Installing Node.js ==="
-curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
-apt-get install -y nodejs
+echo "=== Installing Node.js via nodeenv ==="
+pip install nodeenv
+nodeenv --node=20.11.0 --prebuilt /opt/node
 
 echo "=== Installing frontend dependencies ==="
-cd frontend
-npm install
+/opt/node/bin/npm --prefix frontend install
 
 echo "=== Building React frontend ==="
-npm run build
+/opt/node/bin/npm --prefix frontend run build
 
-cd ..
 echo "=== Build complete ==="
