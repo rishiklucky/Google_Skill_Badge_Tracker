@@ -1,91 +1,64 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/Google%20Cloud-Skills%20Boost-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" alt="Google Cloud Skills Boost" />
-<img src="https://img.shields.io/badge/FastAPI-0.111-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
-<img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
-<img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+<img src="https://img.shields.io/badge/Google%20Cloud-Skills%20Boost-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" />
+<img src="https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
+<img src="https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+<img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+
+<br /><br />
 
 # 🏅 Google Skill Badge Tracker
 
-**Stop searching manually. Track all your Google Cloud Skill Badges in seconds.**
+**Automatically track your Google Cloud Skill Badges — no more manual searching.**
 
-Upload your badge list Excel sheet, paste your public profile URL, and get a fully colour-coded, downloadable report — automatically.
-
-[Features](#-features) · [Tech Stack](#-tech-stack) · [Getting Started](#-getting-started) · [Usage](#-usage) · [Deploy](#-deploy-to-render) · [FAQ](#-faq)
+Upload your badge list, paste your public profile URL, and get a fully colour-coded Excel report in seconds.
 
 </div>
 
 ---
 
-## ✨ Features
+## What is this?
 
-| | Feature |
-|---|---|
-| 🔍 | **Auto-scrape** — extracts completed badges directly from your public Google Cloud Skills Boost profile |
-| 📊 | **Smart comparison** — matches badge names case-insensitively, ignoring extra spaces and minor formatting differences |
-| 🎨 | **Colour-coded Excel output** — Completed (green), Not Completed (amber), Not Available (red) with live conditional formatting |
-| 🔗 | **Hyperlinks preserved** — all badge links from your original sheet are kept intact in the output file |
-| ✏️ | **Manual edit support** — change a status in the downloaded sheet and the colour updates automatically |
-| 🔎 | **Verify tool** — re-upload your edited sheet to get an instant count of each status |
-| 📈 | **Progress summary** — total, completed, not completed, and not available counts with a progress bar |
-| ⬇️ | **One-click download** — get the updated `.xlsx` file instantly |
+Google Cloud Skills Boost offers hundreds of skill badges. Tracking which ones you've completed against a master list is tedious — most people resort to Ctrl+F one badge at a time.
+
+This tool automates that entirely. It scrapes your public profile, compares it against your badge list Excel sheet, and produces a downloadable report with every badge marked as **Completed**, **Not Completed**, or **Not Available**.
 
 ---
 
-## 🛠 Tech Stack
+## How it works
 
-| Layer | Technology |
-|---|---|
-| **Frontend** | React 18 + Vite |
-| **Backend** | Python · FastAPI |
-| **Scraping** | BeautifulSoup4 · Selenium (JS fallback) |
-| **Excel Processing** | openpyxl · Pandas |
-| **Deployment** | Render (single web service) |
+```
+Your Profile URL  ──►  Scrape completed badges
+Your Excel Sheet  ──►  Read badge names + availability
+                            │
+                            ▼
+                   Compare & classify each badge
+                            │
+                            ▼
+              Download colour-coded Excel report
+```
+
+1. **Scrape** — the app fetches your public Google Cloud Skills Boost profile and extracts all completed badge names
+2. **Compare** — each badge in your sheet is matched against the scraped list (case-insensitive, whitespace-tolerant)
+3. **Output** — a new Excel file is generated with a third column: **Completion Status**
 
 ---
 
-## 🚀 Getting Started
+## Features
 
-### Prerequisites
-
-- Python **3.10+**
-- Node.js **18+**
-- Google Chrome + matching ChromeDriver *(optional — only needed for Selenium fallback)*
-
-### 1 · Clone the repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/skill-badge-tracker.git
-cd skill-badge-tracker
-```
-
-### 2 · Start the backend
-
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
-```
-
-### 3 · Start the frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Open **http://localhost:5173** in your browser.
-
-> The Vite dev server proxies all `/api` requests to the FastAPI backend automatically.
+- 🔍 **Auto-scrape** — no manual copy-paste; pulls directly from your public profile
+- 📊 **Smart matching** — case-insensitive, ignores extra spaces and minor formatting differences
+- 🎨 **Colour-coded output** — green for Completed, amber for Not Completed, red for Not Available
+- 🔗 **Hyperlinks preserved** — badge links from your original sheet are kept intact
+- ✏️ **Live conditional formatting** — edit a status manually in Excel and the colour updates automatically
+- 🔎 **Verify tool** — re-upload your edited sheet to instantly recount each status
+- 📈 **Progress summary** — visual breakdown with total, completed, not completed, and not available counts
 
 ---
 
-## 📖 Usage
+## Excel Sheet Format
 
-### Step 1 — Prepare your Excel sheet
-
-Your file must have **at least 2 columns** with headers in row 1:
+Your input file needs **two columns** with headers in row 1:
 
 | Badge Name | Availability Status |
 |---|---|
@@ -93,136 +66,55 @@ Your file must have **at least 2 columns** with headers in row 1:
 | Perform Foundational Infrastructure Tasks | Available |
 | Some Retired Badge | Not Available |
 
-> **Tip:** Badge names in column 1 can be hyperlinks — the app preserves them in the output.
+The app adds a third column to the output:
 
-### Step 2 — Make your profile public
-
-1. Go to [Google Cloud Skills Boost](https://www.cloudskillsboost.google)
-2. Click your avatar → **Edit Profile**
-3. Set visibility to **Public**
-
-Your profile URL will look like:
-```
-https://www.cloudskillsboost.google/public_profiles/YOUR_ID
-```
-
-### Step 3 — Track
-
-1. Paste your profile URL
-2. Upload your `.xlsx` or `.csv` file
-3. Click **Track My Badges**
-4. Download the updated sheet
-
-### Output — Completion Status column
-
-| Condition | Status |
+| Condition | Completion Status |
 |---|---|
-| Badge found on your profile | ✅ **Completed** |
-| Column 2 is "Not Available" | 🚫 **Not Available** |
-| Badge exists but not on profile | ⏳ **Not Completed** |
+| Badge found on your profile | ✅ Completed |
+| Column 2 is "Not Available" | 🚫 Not Available |
+| Badge exists but not on profile | ⏳ Not Completed |
 
-> **Note:** Please verify badges marked as *Not Completed* — some may be completed but classified differently due to naming differences between your sheet and your profile.
-
-### Step 4 — Verify after manual edits
-
-After editing the downloaded sheet manually, use the **Verify Edited Sheet** panel to re-upload it and instantly see the updated count for each status.
+> **Note:** Some badges marked as *Not Completed* may actually be completed but classified differently due to naming differences between your sheet and your profile. Always do a quick review of that column.
 
 ---
 
-## ☁️ Deploy to Render
+## Tech Stack
 
-Deploy as a **single web service** — FastAPI serves both the API and the built React frontend.
-
-### 1 · Push to GitHub
-
-```bash
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/YOUR_USERNAME/skill-badge-tracker.git
-git push -u origin main
-```
-
-### 2 · Create a Render Web Service
-
-1. Go to [render.com](https://render.com) → **New +** → **Web Service**
-2. Connect your GitHub repo
-3. Render auto-detects `render.yaml` — click **Apply**
-
-Or configure manually:
-
-| Setting | Value |
+| Layer | Technology |
 |---|---|
-| **Runtime** | Python 3 |
-| **Build Command** | `./build.sh` |
-| **Start Command** | `uvicorn backend.main:app --host 0.0.0.0 --port $PORT` |
-| **Instance Type** | Free |
-
-### 3 · Deploy
-
-Click **Create Web Service**. Render will install dependencies, build the React app, and start the server. Your app will be live at `https://your-app-name.onrender.com`.
-
-> **Free tier note:** The service spins down after 15 minutes of inactivity. The first request after sleep takes ~30 seconds. Upgrade to Starter ($7/mo) to keep it always-on.
+| **Frontend** | React 18 · Vite |
+| **Backend** | Python · FastAPI |
+| **Scraping** | BeautifulSoup4 · Selenium (JS fallback) |
+| **Excel** | openpyxl · Pandas |
+| **Deployment** | Render |
 
 ---
 
-## ❓ FAQ
-
-**Why are some completed badges showing as Not Completed?**
-The badge name in your Excel sheet may differ slightly from how it appears on your profile (e.g. punctuation, abbreviations). Edit the status manually in the downloaded sheet — the conditional formatting will update the colour automatically.
-
-**Does Selenium work on Render's free tier?**
-No. Headless Chrome requires system dependencies not available on the free tier. The app falls back to BeautifulSoup for public profiles, which works for most cases. If you need Selenium, use a paid Render plan or run locally.
-
-**How do I install ChromeDriver locally?**
-
-Option A — manual:
-```
-https://chromedriver.chromium.org/downloads
-```
-Download the version matching your Chrome installation.
-
-Option B — `webdriver-manager`:
-```bash
-pip install webdriver-manager
-```
-Then update `backend/main.py`:
-```python
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-```
-
-**Are my files stored anywhere?**
-No. Uploaded files are processed in memory. The generated output Excel is saved to the server's `/tmp` directory and is only accessible via a one-time UUID link. It is not persisted across server restarts.
-
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 skill-badge-tracker/
 ├── backend/
-│   ├── main.py              # FastAPI app — scraping, Excel processing, static serving
+│   ├── main.py              # FastAPI — scraping, processing, static file serving
 │   └── requirements.txt
 ├── frontend/
 │   ├── src/
 │   │   ├── App.jsx          # Main tracker UI
-│   │   ├── App.module.css
 │   │   ├── VerifySheet.jsx  # Verify edited sheet component
-│   │   └── VerifySheet.module.css
-│   ├── index.html
-│   ├── package.json
+│   │   └── *.module.css
 │   └── vite.config.js
-├── build.sh                 # Render build script
+├── build.sh                 # Build script
 ├── render.yaml              # Render deployment config
 └── README.md
 ```
 
 ---
 
-## 📄 License
+## Live Demo
 
-MIT — free to use, modify, and distribute.
+> Deployed on Render — [skill-badge-tracker.onrender.com](https://skill-badge-tracker.onrender.com)
+>
+> ⚠️ Free tier — may take ~30 seconds to wake up on first visit.
 
 ---
 
