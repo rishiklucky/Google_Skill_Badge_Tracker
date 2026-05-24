@@ -181,7 +181,7 @@ export default function App() {
                       </div>
                     </div>
                     <a
-                      href="/badge_list.xlsx"
+                      href="/api/template"
                       download="Google_Skill_Badge_List.xlsx"
                       className={styles.templateBtn}
                     >

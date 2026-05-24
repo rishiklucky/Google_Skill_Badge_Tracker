@@ -524,6 +524,29 @@ def health():
     return {"status": "ok"}
 
 
+@app.get("/api/template")
+def download_template():
+    """
+    Serve the badge list template xlsx with the correct MIME type.
+    The file lives in frontend/public/badge_list.xlsx (copied to dist/ at build time).
+    """
+    # Look in the built dist folder first (production), then fall back to public/ (dev)
+    candidates = [
+        os.path.join(os.path.dirname(__file__), "..", "frontend", "dist",    "badge_list.xlsx"),
+        os.path.join(os.path.dirname(__file__), "..", "frontend", "public",  "badge_list.xlsx"),
+    ]
+    path = next((p for p in candidates if os.path.isfile(p)), None)
+
+    if not path:
+        raise HTTPException(status_code=404, detail="Template file not found on server.")
+
+    return FileResponse(
+        path,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        filename="Google_Skill_Badge_List.xlsx",
+    )
+
+
 # ─────────────────────────────────────────────
 #  Serve React frontend (production)
 #  Must be registered AFTER all /api routes.
