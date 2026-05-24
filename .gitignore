@@ -10,6 +10,9 @@ venv/
 frontend/node_modules/
 frontend/dist/
 
+# nodeenv (local Node install for Render builds)
+.nodeenv/
+
 # OS
 .DS_Store
 Thumbs.db
