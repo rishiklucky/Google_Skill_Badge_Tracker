@@ -168,6 +168,26 @@ export default function App() {
 
                 <div className={styles.field}>
                   <label className={styles.label}>Badge List (.xlsx / .csv)</label>
+
+                  {/* ── Template download banner ── */}
+                  <div className={styles.templateBanner}>
+                    <div className={styles.templateLeft}>
+                      <span className={styles.templateIcon}>📥</span>
+                      <div>
+                        <p className={styles.templateTitle}>Don't have the badge list?</p>
+                        <p className={styles.templateMeta}>
+                          Download the pre-built sheet · Last updated <strong>May 2026</strong>
+                        </p>
+                      </div>
+                    </div>
+                    <a
+                      href="/badge_list.xlsx"
+                      download="Google_Skill_Badge_List.xlsx"
+                      className={styles.templateBtn}
+                    >
+                      ⬇ Download Sheet
+                    </a>
+                  </div>
                   <div
                     {...getRootProps()}
                     className={[

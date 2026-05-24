@@ -488,6 +488,71 @@
   transition: width 0.7s cubic-bezier(0.4,0,0.2,1);
 }
 
+/* ── Template download banner ── */
+.templateBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: linear-gradient(135deg, #F0F4FF 0%, #EEF1FE 100%);
+  border: 1px solid #C7D2FE;
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.templateLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.templateIcon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.templateTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--blue-dark);
+  line-height: 1.2;
+}
+
+.templateMeta {
+  font-size: 0.75rem;
+  color: #6366F1;
+  margin-top: 2px;
+}
+
+.templateMeta strong {
+  font-weight: 700;
+}
+
+.templateBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 6px rgba(79,110,247,0.3);
+  flex-shrink: 0;
+}
+
+.templateBtn:hover {
+  background: var(--blue-dark);
+  box-shadow: 0 4px 12px rgba(79,110,247,0.4);
+}
+
 /* ── Format note (below file dropzone) ── */
 .formatNote {
   display: flex;
