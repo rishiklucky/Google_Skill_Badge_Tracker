@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
-# Render build script — runs once before the service starts.
-# Installs Python deps and builds the React frontend.
-
-set -e  # exit on any error
+set -e
 
 echo "=== Installing Python dependencies ==="
 pip install -r backend/requirements.txt
 
-echo "=== Installing Node dependencies ==="
+echo "=== Installing Node.js ==="
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt-get install -y nodejs
+
+echo "=== Installing frontend dependencies ==="
 cd frontend
 npm install
 
