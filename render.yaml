@@ -2,12 +2,7 @@ services:
   - type: web
     name: skill-badge-tracker
     runtime: python
-    buildCommand: >-
-      pip install -r backend/requirements.txt &&
-      pip install nodeenv &&
-      nodeenv --node=20.11.0 --prebuilt /opt/node &&
-      /opt/node/bin/npm --prefix frontend install &&
-      /opt/node/bin/npm --prefix frontend run build
+    buildCommand: "chmod +x build.sh && ./build.sh"
     startCommand: "uvicorn backend.main:app --host 0.0.0.0 --port $PORT"
     envVars:
       - key: PYTHON_VERSION
