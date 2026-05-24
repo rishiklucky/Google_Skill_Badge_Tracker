@@ -112,7 +112,7 @@ skill-badge-tracker/
 
 ## Live Demo
 
-> Deployed on Render — [[skill-badge-tracker.onrender.com](https://skill-badge-tracker.onrender.com)](https://google-skill-badge-tracker.onrender.com)
+> Deployed on Render — [(https://skill-badge-tracker.onrender.com)](https://google-skill-badge-tracker.onrender.com)
 >
 > ⚠️ Free tier — may take ~30 seconds to wake up on first visit.
 
