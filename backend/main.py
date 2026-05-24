@@ -543,7 +543,7 @@ def download_template():
     return FileResponse(
         path,
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        filename="Google_Skill_Badge_List.xlsx",
+        filename="badge_list.xlsx",
     )
 
 
